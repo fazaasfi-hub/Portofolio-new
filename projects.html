@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Portfolio Modern</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+    <div id="pageTransition"></div>
+
+    <div class="bg-fixed">
+        <div class="grid-plane" id="gridPlane"></div>
+        <div class="vignette"></div>
+    </div>
+
+    <nav class="floating-nav">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html" class="active">Projects</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero" style="min-height: auto; padding-top: 50px; margin-bottom: 30px;">
+            <h1 style="font-size: clamp(2rem, 8vw, 3.5rem);">MY <span>WORKS</span></h1>
+            <p class="typewriter-container" style="font-size: 1rem; color: #888;">Koleksi Proyek Kreatif Saya</p>
+        </section>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="project-img-wrapper">
+                    <img src="project.jpg" alt="Web Manhwa" class="project-img">
+                </div>
+                <h3>Web Manhwa</h3>
+                <p>Website baca komik dengan tampilan dark mode yang nyaman di mata.</p>
+                <div style="margin-top: 15px; color: var(--neon); font-size: 0.8rem; font-weight: 600;">HTML • CSS • JS</div>
+            </div>
+
+            <div class="card">
+                <div class="project-img-wrapper">
+                    <img src="Bunga.jpg" alt=" Flower" class="project-img">
+                </div>
+                <h3>Flower</h3>
+                <p>Eksperimen desain logo Flower menggunakan Javascript</p>
+                <div style="margin-top: 15px; color: var(--neon); font-size: 0.8rem; font-weight: 600;">HTML • JS • CSS • SCSS • CSS STYLE MAP</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

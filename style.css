@@ -1,0 +1,217 @@
+:root {
+    --bg: #050505;
+    --neon: #00dfd8;
+    --accent: #007cf0;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; 
+}
+
+body { 
+    background: var(--bg); 
+    color: #fff; 
+    overflow-x: hidden; 
+}
+
+/* --- BACKGROUND 3D GRID --- */
+.bg-fixed {
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    z-index: -1; 
+    overflow: hidden; 
+    perspective: 1000px;
+}
+
+.grid-plane {
+    position: absolute; 
+    width: 400%; height: 400%; 
+    top: -150%; left: -150%;
+    background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotateX(70deg);
+    will-change: transform;
+}
+
+.vignette {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, var(--bg) 90%);
+}
+
+/* --- NAVIGASI MODERN (Responsive) --- */
+.floating-nav {
+    position: fixed; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: 1000; 
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px); 
+    padding: 6px; 
+    border-radius: 100px;
+    border: 1px solid var(--border); 
+    display: flex; 
+    gap: 2px;
+    width: max-content;
+    max-width: 95%;
+}
+
+.nav-links a {
+    color: #888; 
+    text-decoration: none; 
+    padding: 8px 15px;
+    font-size: clamp(0.7rem, 2vw, 0.85rem); 
+    font-weight: 600; 
+    transition: 0.4s; 
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.nav-links a.active, .nav-links a:hover {
+    color: var(--neon); 
+    background: rgba(0, 223, 216, 0.1);
+}
+
+/* --- LAYOUT KONTEN (Anti-Meledak) --- */
+.container {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 0; /* Dikurangi sedikit agar tidak terlalu jauh di HP */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero { 
+    min-height: 60vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    width: 100%;
+}
+
+.hero h1 { 
+    font-size: clamp(2.5rem, 10vw, 5.5rem); 
+    font-weight: 800; 
+    line-height: 1; 
+    margin-bottom: 20px; 
+    letter-spacing: -2px; 
+}
+.hero h1 span { 
+    color: var(--neon); 
+    text-shadow: 0 0 30px rgba(0, 223, 216, 0.3); 
+}
+
+.typewriter-container { 
+    font-size: clamp(1rem, 4vw, 1.5rem); 
+    font-weight: 400; 
+    color: #aaa; 
+}
+
+/* --- CARDS GRID (FIXED) --- */
+.card-grid {
+    display: grid;
+    /* Otomatis 1 kolom di HP, 2 kolom di Tablet/Laptop */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* Perbaikan untuk layar kecil agar minmax tidak error */
+@media (max-width: 350px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+    color: var(--neon);
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+/* --- ANIMASI TRANSISI HALAMAN --- */
+#pageTransition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg); /* Warna latar belakang hitam kamu */
+    z-index: 9999;         /* Paling depan menutupi segalanya */
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Saat aktif, layar jadi hitam pekat */
+#pageTransition.active {
+    opacity: 1;
+    pointer-events: all;
+}
+/* Container Foto Project */
+.project-img-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden; /* Memotong gambar yang kelebihan */
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+}
+
+/* Gambar Project */
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Kuncinya di sini: Foto otomatis pas tanpa penyok */
+    transition: transform 0.5s ease;
+}
+
+/* Efek Zoom saat Kartu di-hover */
+.card:hover .project-img {
+    transform: scale(1.1);
+}
+.project-img {
+    width: 100%;
+    height: 100%;
+    /* Ini rahasianya agar foto proporsional */
+    object-fit: cover; 
+    /* Kamu bisa atur fokusnya: center, top, atau bottom */
+    object-position: bottom; 
+}
